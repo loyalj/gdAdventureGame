@@ -1,7 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvtnrlmkdmvfp"]
 
 [ext_resource type="PackedScene" uid="uid://ddxf1sqq7l3xe" path="res://scenes/player.tscn" id="1_7niib"]
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_s71tv"]
+
+[sub_resource type="GDScript" id="GDScript_1jo5h"]
+script/source = "extends Node2D
+
+
+
+func _input(event):
+	pass
+	#if event.is_action_pressed(\"lmb_click\"):
+		#print_debug(event.position)
+		
+func _process(delta):
+	pass
+		#if Input.is_action_just_pressed(\"lmb_click\"):
+			#print_debug(get_viewport().get_visible_rect().size)
+"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tcsbk"]
 vertices = PackedVector2Array(1744, 962, 1864, 1059, 47, 1055, 1460, 959, 956, 953, 1554, 805, 1416, 833, 158, 939, 298, 796, 1008, 834)
@@ -11,7 +26,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_s71tv")
+script = SubResource("GDScript_1jo5h")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.141176, 0.388235, 0, 1)
