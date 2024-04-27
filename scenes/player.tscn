@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_c3vfo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23id4"]
-size = Vector2(74, 227)
+size = Vector2(74, 176)
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -16,15 +16,17 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -37.0
-offset_top = -228.0
+offset_top = -176.0
 offset_right = 37.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -113.5)
+position = Vector2(0, -88)
 shape = SubResource("RectangleShape2D_23id4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
-debug_path_custom_color = Color(0.690196, 0, 0.690196, 1)
+debug_use_custom = true
+debug_path_custom_color = Color(1, 1, 1, 0.388235)
+debug_path_custom_point_size = 0.0
+debug_path_custom_line_width = 5.0

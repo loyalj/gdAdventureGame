@@ -7,6 +7,7 @@ var windowDimensions
 @export var heightCurve : Curve
 
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
+@onready var cam: Camera2D = $Camera2D
 
 func _ready():
 	moveTarget = global_position
@@ -14,8 +15,8 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("lmb_click"):
-		moveTarget = event.global_position
-		nav.target_position = event.global_position
+		moveTarget = cam.get_global_mouse_position()
+		nav.target_position = moveTarget
 
 func _process(delta):
 	velocity = global_position.direction_to(nav.get_next_path_position()) * speed
