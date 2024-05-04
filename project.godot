@@ -15,15 +15,26 @@ run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneManager="*res://modules/scene_manager.gd"
+
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
 window/size/resizable=false
+window/size/always_on_top=true
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+
+[editor]
+
+movie_writer/mjpeg_quality=1.0
+movie_writer/movie_file="D:/Godot/Projects/Adventure Game/movies/adventure_game.avi"
+movie_writer/fps=30
 
 [input]
 
@@ -35,5 +46,6 @@ lmb_click={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

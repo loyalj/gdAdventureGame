@@ -1,59 +1,50 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvtnrlmkdmvfp"]
 
-[ext_resource type="PackedScene" uid="uid://ddxf1sqq7l3xe" path="res://scenes/player.tscn" id="1_7niib"]
+[ext_resource type="PackedScene" uid="uid://lmriysrn1vcr" path="res://levels/level_1.tscn" id="2_jtw8g"]
+[ext_resource type="PackedScene" uid="uid://wg676fvle788" path="res://scenes/game_ui.tscn" id="2_v6yvo"]
 
 [sub_resource type="GDScript" id="GDScript_1jo5h"]
 script/source = "extends Node2D
 
+@export var gameUI:Control
+@export var currentLevel:Level
 
 
-func _input(event):
-	pass
-	#if event.is_action_pressed(\"lmb_click\"):
-		#print_debug(event.position)
-		
-func _process(delta):
-	pass
-		#if Input.is_action_just_pressed(\"lmb_click\"):
-			#print_debug(get_viewport().get_visible_rect().size)
+func _ready():
+	# Sets up the parent node for the scene manager to add/remove levels under 
+	SceneManager.set_root_node(self)
+	connect_level_signals()
+	SceneManager.connect(\"scene_switched\", _on_level_change)
+
+
+func _on_change_level(newLevelPath):
+	disconnect_level_signals()
+	SceneManager.transition_scene(newLevelPath, \"fade_in_out\")
+
+
+func _on_level_change(newLevel):
+	currentLevel = newLevel
+	connect_level_signals()
+
+
+func connect_level_signals():
+	currentLevel.connect(\"change_level\", _on_change_level)
+
+
+func disconnect_level_signals():
+	currentLevel.disconnect(\"change_level\", _on_change_level)
 "
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_8uvju"]
-vertices = PackedVector2Array(3163, 883, 3232, 1022, 1841, 1015, 1464, 959, 1688, 914, 1836, 1028, 1884, 1066, 25, 1066, 945, 959, 1550, 806, 1441, 894, 295, 798, 974, 898)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(3, 5, 6, 7, 8), PackedInt32Array(9, 4, 3, 10), PackedInt32Array(11, 9, 10, 12), PackedInt32Array(11, 12, 8, 7), PackedInt32Array(3, 2, 5)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(1913, 1076, 1, 1077, 292, 788, 1554, 797), PackedVector2Array(1646, 905, 3169, 873, 3248, 1033, 1706, 1025), PackedVector2Array(980, 908, 961, 949, 1450, 949, 1434, 904)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("gameUI", "currentLevel")]
+process_mode = 3
 y_sort_enabled = true
 script = SubResource("GDScript_1jo5h")
+gameUI = NodePath("UI/Game UI")
+currentLevel = NodePath("Level 1")
 
-[node name="Grass" type="Polygon2D" parent="."]
-color = Color(0.141176, 0.388235, 0, 1)
-polygon = PackedVector2Array(0, 1080, 1920, 1080, 1556, 795, 293, 786)
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Rocks Art" type="Polygon2D" parent="."]
-position = Vector2(1168, 937)
-color = Color(0.592157, 0.180392, 0.309804, 1)
-polygon = PackedVector2Array(-187, 0, 262, -1, 188, -259, 86, -176, -4, -401)
+[node name="Game UI" parent="UI" instance=ExtResource("2_v6yvo")]
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(32.1621, 71.9919)
-scale = Vector2(0.985775, 0.931174)
-color = Color(0.384314, 0.235294, 0.0745098, 1)
-polygon = PackedVector2Array(3240.94, 1015.93, 3178.04, 869.878, 1685.82, 906.391, 1818.71, 1011.63)
-
-[node name="Player" parent="." instance=ExtResource("1_7niib")]
-y_sort_enabled = false
-position = Vector2(424, 899)
-motion_mode = 1
-speed = 500
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(0.6, 0.6)
-limit_left = 0
-limit_bottom = 1080
-editor_draw_limits = true
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_8uvju")
+[node name="Level 1" parent="." instance=ExtResource("2_jtw8g")]
+process_mode = 1
