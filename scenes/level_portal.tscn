@@ -8,12 +8,13 @@ size = Vector2(141, 218)
 [node name="LevelPortal" type="Area2D"]
 script = ExtResource("1_shov2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(41.5, -71)
-shape = SubResource("RectangleShape2D_8w7ri")
-
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.0745098, 0.0705882, 0.0431373, 1)
-polygon = PackedVector2Array(-30, -183, 114, -182, 113, 37, -31, 38)
+polygon = PackedVector2Array(-71, -110, 71, -110, 71, 110, -72, 111)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8w7ri")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

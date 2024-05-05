@@ -10,10 +10,11 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(822, 1076, 2798, 1036, 3435, 1624, 968, 1844)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
-[node name="Level 2" type="Node2D"]
+[node name="Level 2" type="Node2D" node_paths=PackedStringArray("player")]
 y_sort_enabled = true
 script = ExtResource("1_e3q5i")
 levelName = "Level 2"
+player = NodePath("Player")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(-1098, -1226)
@@ -30,3 +31,13 @@ targetLevelPath = "res://levels/level_1.tscn"
 
 [node name="Player" parent="." instance=ExtResource("1_anur1")]
 position = Vector2(68, 177)
+
+[node name="Level 1" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+position = Vector2(73, 283)
+
+[node name="Level3Portal" parent="." instance=ExtResource("3_tetbm")]
+position = Vector2(1890, -47)
+targetLevelPath = "res://levels/level_3.tscn"
+
+[node name="Level 3" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+position = Vector2(1716, 65)

@@ -10,10 +10,6 @@ var transitionMask = null
 var rootNode = null
 
 
-func _ready():
-	set_root_node(get_tree().root)
-	
-
 
 func set_root_node(node):
 	rootNode = node

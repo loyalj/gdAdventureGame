@@ -36,7 +36,7 @@ debug_path_custom_point_size = 0.0
 debug_path_custom_line_width = 5.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.4, 0.4)
+zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 editor_draw_screen = false
 

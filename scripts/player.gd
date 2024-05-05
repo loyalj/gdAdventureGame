@@ -26,6 +26,7 @@ func _process(_delta):
 
 # Move the player and camera instantaneously without smooth panning
 func set_player_position(new_position):
+	get_tree().paused = false
 	global_position = new_position
 	cam.global_position = new_position
 	cam.reset_smoothing()
