@@ -1,6 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
-.movies/*
+.movies/
+.movies/**
 .art/
-.art/*
+.art/**
 .DS_Store
