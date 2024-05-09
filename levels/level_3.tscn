@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpk8jq16wm08c"]
+[gd_scene load_steps=6 format=3 uid="uid://dpk8jq16wm08c"]
 
 [ext_resource type="Script" path="res://levels/level_3.gd" id="1_rpm22"]
 [ext_resource type="PackedScene" uid="uid://ddxf1sqq7l3xe" path="res://scenes/player.tscn" id="2_1dyw6"]
 [ext_resource type="PackedScene" uid="uid://cnpcu7wpot5oi" path="res://scenes/level_portal.tscn" id="3_ly7ta"]
+[ext_resource type="PackedScene" uid="uid://267yp48csqck" path="res://scenes/objects/simple_switch.tscn" id="4_tncna"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cerqe"]
-vertices = PackedVector2Array(1007, 368, 194, 364, 514, -861, 664, -862)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(506, -871, 673, -873, 1021, 379, 181, 374)])
+vertices = PackedVector2Array(664, -862, 1007, 368, 708, 244, 668, 200, 514, -861, 597, 202, 194, 364, 562, 243, 702, 256, 568, 255)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(4, 3, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(8, 2, 1), PackedInt32Array(8, 1, 6, 9), PackedInt32Array(6, 7, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(506, -871, 673, -873, 1021, 379, 181, 374), PackedVector2Array(602, 212, 574, 245, 696, 246, 664, 210)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Level 3" type="Node2D" node_paths=PackedStringArray("player")]
@@ -26,6 +27,7 @@ color = Color(0.431373, 0.470588, 0.337255, 1)
 polygon = PackedVector2Array(507, -872, 673, -874, 1043, 400, 152, 397)
 
 [node name="Level 2" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+editor_description = "Player Spawn Marker"
 position = Vector2(586, -734)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -33,4 +35,9 @@ navigation_polygon = SubResource("NavigationPolygon_cerqe")
 
 [node name="Player" parent="." instance=ExtResource("2_1dyw6")]
 z_index = 1
-position = Vector2(595, 244)
+position = Vector2(405, 103)
+
+[node name="SimpleSwitch" parent="." instance=ExtResource("4_tncna")]
+z_index = 1
+position = Vector2(635, 245)
+switchName = "switch001"

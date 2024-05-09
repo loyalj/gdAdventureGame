@@ -14,6 +14,9 @@ func _ready():
 	
 
 
-# Handle a signal from any level portal by signaling for the game to perform a level change. Each portal has a property that stores which level should be loaded. The current level name is sent in case the next level wants to us this info for things like player spawn location
+# Handle a signal from any level portal by signaling for the game to perform a level change. 
+# Each portal has a property that stores which level should be loaded. 
+# The current level name is sent in case the next level wants to us this info for things 
+# like player spawn location
 func _on_portal_entered(targetLevelPath):
 	change_level.emit(targetLevelPath, levelName)

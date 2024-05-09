@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var moveTarget = null
 
-@export var speed = 300
+@export var speed = 500
 
 @export var nav: NavigationAgent2D
 @export var cam: Camera2D
