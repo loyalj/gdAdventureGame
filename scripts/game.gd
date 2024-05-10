@@ -34,14 +34,14 @@ func disconnect_level_signals():
 func _on_scene_change(newLevel):
 	currentLevel = newLevel
 	connect_level_signals()
-	reset_mouse_cursor()
+	reset_mouse_cursor() 
 	
 	for spawnPoint in get_tree().get_nodes_in_group("PlayerSpawn"):
 		if spawnPoint.name == lastLevelName:
 			currentLevel.player.set_player_position(
 				spawnPoint.global_position)
 
-
+# The cursor gets stuck as a custom curosr sometimes when objects from an old level get unloaded without resetting it
 func reset_mouse_cursor():
 	var defaultMouseCursorPath = ProjectSettings.get_setting("display/mouse_cursor/custom_image")
 	var defaultMouseCursor = load(defaultMouseCursorPath)

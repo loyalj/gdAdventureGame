@@ -4,13 +4,17 @@ extends Node2D
 signal change_level(newLevelPath, levelName)
 
 @export var levelName:String
-@export var player:CharacterBody2D
+@export var player:AdventurePlayer
 
 
 func _ready():
-	# Check the level for any level portals and connect a handler to their portal_entered signal
+	# Check the level for any level portals and handle their signals
 	for portal in find_children("*","LevelPortal"):
 		portal.connect("portal_entered", _on_portal_entered)
+	
+	# Check the level for any simple switches and handle their signals
+	for simpleSwitch in find_children("*","SimpleSwitch"):
+		simpleSwitch.connect("looked_at", _on_something_looked_at)
 	
 
 
@@ -20,3 +24,7 @@ func _ready():
 # like player spawn location
 func _on_portal_entered(targetLevelPath):
 	change_level.emit(targetLevelPath, levelName)
+
+
+func _on_something_looked_at(dialog):
+	player.show_dialog(dialog)

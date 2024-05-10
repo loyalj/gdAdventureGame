@@ -1,11 +1,14 @@
+class_name AdventurePlayer
 extends CharacterBody2D
 
 var moveTarget = null
+var dialogDisplayTime:float = 3.0
 
 @export var speed = 500
 
 @export var nav: NavigationAgent2D
 @export var cam: Camera2D
+@export var dialogBox: Label
 
 func _ready():
 	moveTarget = global_position
@@ -30,3 +33,12 @@ func set_player_position(new_position):
 	global_position = new_position
 	cam.global_position = new_position
 	cam.reset_smoothing()
+
+
+func show_dialog(dialog):
+	dialogBox.text = dialog
+	dialogBox.show()
+	
+	await get_tree().create_timer(dialogDisplayTime).timeout
+	
+	dialogBox.hide()

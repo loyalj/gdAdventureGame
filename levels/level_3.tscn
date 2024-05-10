@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://levels/level_3.gd" id="1_rpm22"]
 [ext_resource type="PackedScene" uid="uid://ddxf1sqq7l3xe" path="res://scenes/player.tscn" id="2_1dyw6"]
-[ext_resource type="PackedScene" uid="uid://cnpcu7wpot5oi" path="res://scenes/level_portal.tscn" id="3_ly7ta"]
+[ext_resource type="PackedScene" uid="uid://cnpcu7wpot5oi" path="res://scenes/objects/level_portal.tscn" id="3_ly7ta"]
 [ext_resource type="PackedScene" uid="uid://267yp48csqck" path="res://scenes/objects/simple_switch.tscn" id="4_tncna"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_cerqe"]
@@ -40,4 +40,5 @@ position = Vector2(405, 103)
 [node name="SimpleSwitch" parent="." instance=ExtResource("4_tncna")]
 z_index = 1
 position = Vector2(635, 245)
-switchName = "switch001"
+switchName = "s002"
+lookAtDialog = "Another Switch... I wonder if they are connected?"

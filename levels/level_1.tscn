@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ddxf1sqq7l3xe" path="res://scenes/player.tscn" id="1_asugf"]
 [ext_resource type="Script" path="res://levels/level_1.gd" id="1_twrqo"]
-[ext_resource type="PackedScene" uid="uid://cnpcu7wpot5oi" path="res://scenes/level_portal.tscn" id="3_2gae2"]
+[ext_resource type="PackedScene" uid="uid://cnpcu7wpot5oi" path="res://scenes/objects/level_portal.tscn" id="3_2gae2"]
 [ext_resource type="PackedScene" uid="uid://267yp48csqck" path="res://scenes/objects/simple_switch.tscn" id="4_ov0iq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8uvju"]
@@ -49,5 +49,7 @@ position = Vector2(2751, 919)
 
 [node name="SimpleSwitch" parent="." instance=ExtResource("4_ov0iq")]
 position = Vector2(630, 884)
+switchName = "s001"
+lookAtDialog = "\"Looks like a switch of some sort, I wonder what it does?\""
 
 [editable path="Level2Portal"]

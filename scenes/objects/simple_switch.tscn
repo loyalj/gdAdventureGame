@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://267yp48csqck"]
+[gd_scene load_steps=6 format=3 uid="uid://267yp48csqck"]
 
 [ext_resource type="Script" path="res://scenes/objects/simple_switch.gd" id="1_w246m"]
 
@@ -54,9 +54,6 @@ _data = {
 "switch_on": SubResource("Animation_8x7qv")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_c2uao"]
-radius = 47.0744
-
 [node name="SimpleSwitch" type="Node2D"]
 script = ExtResource("1_w246m")
 
@@ -78,12 +75,10 @@ libraries = {
 
 [node name="ActivationArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationArea"]
-position = Vector2(0, -22)
-shape = SubResource("CircleShape2D_c2uao")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ActivationArea"]
+polygon = PackedVector2Array(-30, -51, 26, -50, 70, 9, -77, 9)
 
 [connection signal="body_entered" from="ActivationArea" to="." method="_on_activation_area_body_entered"]
 [connection signal="body_exited" from="ActivationArea" to="." method="_on_activation_area_body_exited"]
-[connection signal="input_event" from="ActivationArea" to="." method="_on_activation_area_input_event"]
 [connection signal="mouse_entered" from="ActivationArea" to="." method="_on_activation_area_mouse_entered"]
 [connection signal="mouse_exited" from="ActivationArea" to="." method="_on_activation_area_mouse_exited"]

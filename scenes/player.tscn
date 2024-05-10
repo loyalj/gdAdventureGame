@@ -4,13 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://b4xqxs2obubqx" path="res://icon.svg" id="2_om5d6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23id4"]
-size = Vector2(74, 73)
+size = Vector2(74, 82)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("nav", "cam")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("nav", "cam", "dialogBox")]
 process_mode = 1
 script = ExtResource("1_c3vfo")
 nav = NodePath("NavigationAgent2D")
 cam = NodePath("Camera2D")
+dialogBox = NodePath("DialogLabel")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 7
@@ -26,7 +27,7 @@ grow_vertical = 0
 color = Color(0.705882, 0.231373, 0.298039, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -36.5)
+position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_23id4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -44,3 +45,22 @@ editor_draw_screen = false
 position = Vector2(1, -140)
 scale = Vector2(0.65625, 0.65625)
 texture = ExtResource("2_om5d6")
+
+[node name="DialogLabel" type="Label" parent="."]
+visible = false
+modulate = Color(0.988235, 0.988235, 0.901961, 1)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -135.0
+offset_top = -238.0
+offset_right = 135.0
+offset_bottom = -189.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "text"
+horizontal_alignment = 1
+autowrap_mode = 2
