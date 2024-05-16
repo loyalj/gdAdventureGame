@@ -2,19 +2,20 @@ class_name SimpleSwitch
 extends Node2D
 
 signal looked_at(dialog)
+signal switch_flipped(switchName, switchOn)
 
 @export var switchName:String
 @export var lookAtDialog:String
+@export var mouseActivate:CompressedTexture2D 
+@export var mouseLookAt:CompressedTexture2D
 
 @onready var animate:AnimationPlayer = $AnimationPlayer
 
-var value:bool = true
-var currentState:switchStates
-
+var switchOn:bool = true
 var mouseOver:bool = false
-var mouseInteract:CompressedTexture2D = load("res://assets/mouse_open_door.png")
 var defaultMouseCursor:CompressedTexture2D
 var cursorHotspot:Vector2
+var currentState:switchStates
 
 enum switchStates {
 	IDLE,
@@ -34,21 +35,37 @@ func changeState(newState):
 	match newState:
 		switchStates.IDLE:
 			Input.set_custom_mouse_cursor(defaultMouseCursor, Input.CURSOR_ARROW, cursorHotspot)
+		
 		switchStates.PLAYER_ENTERED:
-			Input.set_custom_mouse_cursor(mouseInteract, Input.CURSOR_ARROW, cursorHotspot)
+			if mouseOver:
+				Input.set_custom_mouse_cursor(mouseActivate, Input.CURSOR_ARROW, cursorHotspot)
+		
 		switchStates.PLAYER_EXITED:
 			changeState(switchStates.IDLE)
 
 
-func flipSwitch():
-	match value:
+func flip_switch():
+	match switchOn:
 		false:
-			value = true
+			switchOn = true
 			animate.play("switch_on")
+		
 		true:
-			value = false
+			switchOn = false
 			animate.play("switch_off")
 	
+	switch_flipped.emit(switchName, switchOn)
+
+
+func set_switch(newValue):
+	switchOn = newValue
+	match switchOn:
+		true:
+			animate.play("switch_on")
+		false:
+			animate.play("switch_off")
+	
+	animate.seek(animate.current_animation_length)
 
 
 func _on_activation_area_body_entered(_body):
@@ -62,9 +79,9 @@ func _on_activation_area_body_exited(_body):
 func _on_activation_area_mouse_entered():
 	mouseOver = true
 	if currentState == switchStates.PLAYER_ENTERED:
-		Input.set_custom_mouse_cursor(mouseInteract, Input.CURSOR_ARROW, cursorHotspot)
+		Input.set_custom_mouse_cursor(mouseActivate, Input.CURSOR_ARROW, cursorHotspot)
 	else:
-		Input.set_custom_mouse_cursor(mouseInteract, Input.CURSOR_ARROW, cursorHotspot)
+		Input.set_custom_mouse_cursor(mouseLookAt, Input.CURSOR_ARROW, cursorHotspot)
 
 
 func _on_activation_area_mouse_exited():
@@ -73,13 +90,17 @@ func _on_activation_area_mouse_exited():
 
 
 func _unhandled_input(event):
-#func _on_activation_area_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("lmb_click") and mouseOver:
 		
 		get_viewport().set_input_as_handled() # Prevents player from moving when they interact with the switch
 		
 		match currentState:
 			switchStates.PLAYER_ENTERED:
-				flipSwitch()
+				flip_switch()
+			
 			switchStates.IDLE:
 				looked_at.emit(lookAtDialog)
+
+# TODO Separate click area from player activation overlap area, so that we can improve the feel of this interaction
+
+# TODO Add state to turn of input when the switch is animating

@@ -14,7 +14,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 [node name="Level 3" type="Node2D" node_paths=PackedStringArray("player")]
 y_sort_enabled = true
 script = ExtResource("1_rpm22")
-levelName = "Level 3"
+levelName = "Level003"
 player = NodePath("Player")
 
 [node name="Level2Portal" parent="." instance=ExtResource("3_ly7ta")]
@@ -26,7 +26,7 @@ targetLevelPath = "res://levels/level_2.tscn"
 color = Color(0.431373, 0.470588, 0.337255, 1)
 polygon = PackedVector2Array(507, -872, 673, -874, 1043, 400, 152, 397)
 
-[node name="Level 2" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+[node name="Level002" type="Marker2D" parent="." groups=["PlayerSpawn"]]
 editor_description = "Player Spawn Marker"
 position = Vector2(586, -734)
 

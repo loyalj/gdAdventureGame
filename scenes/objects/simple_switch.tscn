@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://267yp48csqck"]
+[gd_scene load_steps=8 format=3 uid="uid://267yp48csqck"]
 
 [ext_resource type="Script" path="res://scenes/objects/simple_switch.gd" id="1_w246m"]
+[ext_resource type="Texture2D" uid="uid://hugrkpq6sdsn" path="res://assets/mouse_activate.png" id="2_nnjqf"]
+[ext_resource type="Texture2D" uid="uid://qw8lcg8u0u4l" path="res://assets/mouse_look_at.png" id="3_b2068"]
 
 [sub_resource type="Animation" id="Animation_n2cpp"]
 length = 0.001
@@ -56,6 +58,8 @@ _data = {
 
 [node name="SimpleSwitch" type="Node2D"]
 script = ExtResource("1_w246m")
+mouseActivate = ExtResource("2_nnjqf")
+mouseLookAt = ExtResource("3_b2068")
 
 [node name="SwitchHandle" type="Polygon2D" parent="."]
 position = Vector2(2.38419e-07, -13)

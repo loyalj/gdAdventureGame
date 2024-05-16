@@ -4,11 +4,12 @@ extends CharacterBody2D
 var moveTarget = null
 var dialogDisplayTime:float = 3.0
 
-@export var speed = 500
+@export var speed = 300
 
 @export var nav: NavigationAgent2D
 @export var cam: Camera2D
 @export var dialogBox: Label
+
 
 func _ready():
 	moveTarget = global_position
@@ -18,6 +19,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("lmb_click"):
 		moveTarget = cam.get_global_mouse_position()
 		nav.target_position = moveTarget
+		dialogBox.hide()
 
 
 func _process(_delta):

@@ -6,15 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://267yp48csqck" path="res://scenes/objects/simple_switch.tscn" id="4_ov0iq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8uvju"]
-vertices = PackedVector2Array(1441, 894, 974, 898, 716, 883, 694, 846, 3163, 883, 3232, 1022, 1841, 1015, 1464, 959, 1688, 914, 1836, 1028, 1884, 1066, 24, 1066, 945, 959, 1549, 806, 443, 640, 710, 893, 573, 891, 567, 880, 597, 843)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(7, 9, 10, 11, 12), PackedInt32Array(13, 8, 7, 0), PackedInt32Array(14, 13, 0, 3), PackedInt32Array(2, 1, 12, 15), PackedInt32Array(7, 6, 9), PackedInt32Array(15, 12, 11, 16), PackedInt32Array(17, 16, 11), PackedInt32Array(17, 11, 14, 18), PackedInt32Array(14, 3, 18)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(1913, 1076, 1, 1077, 440, 630, 1554, 797), PackedVector2Array(1646, 905, 3169, 873, 3248, 1033, 1706, 1025), PackedVector2Array(980, 908, 961, 949, 1450, 949, 1434, 904), PackedVector2Array(602, 853, 579, 881, 704, 883, 688, 856)])
+vertices = PackedVector2Array(1441, 894, 974, 898, 716, 883, 694, 846, 3163, 883, 3232, 1022, 1841, 1015, 1464, 959, 1688, 914, 1836, 1028, 1884, 1065, 22, 1065, 945, 959, 1550, 806, 29, 772, 710, 893, 573, 891, 567, 880, 597, 843)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(7, 9, 10, 11, 12), PackedInt32Array(13, 8, 7, 0), PackedInt32Array(14, 13, 0, 3), PackedInt32Array(2, 1, 12, 15), PackedInt32Array(7, 6, 9), PackedInt32Array(15, 12, 11, 16), PackedInt32Array(16, 11, 14, 17), PackedInt32Array(18, 17, 14), PackedInt32Array(14, 3, 18)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1913, 1076, 12, 1075, 20, 762, 1554, 797), PackedVector2Array(1646, 905, 3169, 873, 3248, 1033, 1706, 1025), PackedVector2Array(980, 908, 961, 949, 1450, 949, 1434, 904), PackedVector2Array(602, 853, 579, 881, 704, 883, 688, 856)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Level 1" type="Node2D" node_paths=PackedStringArray("player")]
 y_sort_enabled = true
 script = ExtResource("1_twrqo")
-levelName = "Level 1"
+levelName = "Level001"
 player = NodePath("Player")
 
 [node name="Player" parent="." instance=ExtResource("1_asugf")]
@@ -23,7 +23,7 @@ position = Vector2(367, 872)
 [node name="Grass Art" type="Polygon2D" parent="."]
 position = Vector2(1, 3)
 color = Color(0.141176, 0.388235, 0, 1)
-polygon = PackedVector2Array(0, 1080, 1920, 1080, 1556, 795, 437, 637)
+polygon = PackedVector2Array(0, 1080, 1920, 1080, 1556, 795, -1, 758)
 
 [node name="Rocks Art" type="Polygon2D" parent="."]
 position = Vector2(1156, 945)
@@ -34,7 +34,7 @@ polygon = PackedVector2Array(-187, 0, 262, -1, 188, -259, 86, -176, -4, -401)
 position = Vector2(-45, 71.9999)
 scale = Vector2(0.985775, 0.931174)
 color = Color(0.384314, 0.235294, 0.0745098, 1)
-polygon = PackedVector2Array(3325.3, 1024.51, 3252.26, 860.205, 1685.82, 906.391, 1818.71, 1011.63)
+polygon = PackedVector2Array(3423.7, 1025.59, 3388.2, 863.426, 1685.82, 906.391, 1818.71, 1011.63)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-13, 5)
@@ -44,12 +44,18 @@ navigation_polygon = SubResource("NavigationPolygon_8uvju")
 position = Vector2(3026, 814)
 targetLevelPath = "res://levels/level_2.tscn"
 
-[node name="Level 2" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+[node name="Level002" type="Marker2D" parent="." groups=["PlayerSpawn"]]
 position = Vector2(2751, 919)
 
 [node name="SimpleSwitch" parent="." instance=ExtResource("4_ov0iq")]
 position = Vector2(630, 884)
 switchName = "s001"
 lookAtDialog = "\"Looks like a switch of some sort, I wonder what it does?\""
+
+[node name="CameraTopLeft" type="Marker2D" parent="."]
+position = Vector2(10, 379)
+
+[node name="CameraBottomRight" type="Marker2D" parent="."]
+position = Vector2(3231, 1149)
 
 [editable path="Level2Portal"]

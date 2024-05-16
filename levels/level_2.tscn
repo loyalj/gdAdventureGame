@@ -1,43 +1,58 @@
-[gd_scene load_steps=5 format=3 uid="uid://du5ljiodbu3sv"]
+[gd_scene load_steps=6 format=3 uid="uid://du5ljiodbu3sv"]
 
 [ext_resource type="PackedScene" uid="uid://ddxf1sqq7l3xe" path="res://scenes/player.tscn" id="1_anur1"]
 [ext_resource type="Script" path="res://levels/level_2.gd" id="1_e3q5i"]
 [ext_resource type="PackedScene" uid="uid://cnpcu7wpot5oi" path="res://scenes/objects/level_portal.tscn" id="3_tetbm"]
+[ext_resource type="Texture2D" uid="uid://choe6opveo5y0" path="res://assets/level001.png" id="4_ad758"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_4hi4b"]
-vertices = PackedVector2Array(3411, 1615, 976, 1833, 834, 1085, 2794, 1046)
+vertices = PackedVector2Array(2874, 1838, 978, 1834, 980, 1502, 2867, 1502)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(822, 1076, 2798, 1036, 3435, 1624, 968, 1844)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(970, 1492, 2877, 1492, 2885, 1849, 968, 1844)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Level 2" type="Node2D" node_paths=PackedStringArray("player")]
 y_sort_enabled = true
 script = ExtResource("1_e3q5i")
-levelName = "Level 2"
+levelName = "Level002"
 player = NodePath("Player")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2(-1098, -1226)
-color = Color(0.619608, 0.427451, 0.439216, 1)
-polygon = PackedVector2Array(818, 1074, 2793, 1033, 3451, 1628, 982, 1844)
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-position = Vector2(-1098, -1226)
+position = Vector2(-1055, -1201)
 navigation_polygon = SubResource("NavigationPolygon_4hi4b")
 
 [node name="Level1Portal" parent="." instance=ExtResource("3_tetbm")]
-position = Vector2(-158, 160)
+position = Vector2(42, 163)
 targetLevelPath = "res://levels/level_1.tscn"
 
-[node name="Player" parent="." instance=ExtResource("1_anur1")]
-position = Vector2(68, 177)
+[node name="Polygon2D" parent="Level1Portal" index="0"]
+visible = false
 
-[node name="Level 1" type="Marker2D" parent="." groups=["PlayerSpawn"]]
-position = Vector2(73, 283)
+[node name="Player" parent="." instance=ExtResource("1_anur1")]
+position = Vector2(121, 387)
+
+[node name="Level001" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+position = Vector2(30, 389)
 
 [node name="Level3Portal" parent="." instance=ExtResource("3_tetbm")]
-position = Vector2(1890, -47)
+position = Vector2(1721, 161)
 targetLevelPath = "res://levels/level_3.tscn"
 
-[node name="Level 3" type="Marker2D" parent="." groups=["PlayerSpawn"]]
-position = Vector2(1716, 65)
+[node name="Polygon2D" parent="Level3Portal" index="0"]
+visible = false
+
+[node name="Level003" type="Marker2D" parent="." groups=["PlayerSpawn"]]
+position = Vector2(1726, 404)
+
+[node name="Level002" type="Sprite2D" parent="."]
+position = Vector2(867, 105)
+texture = ExtResource("4_ad758")
+
+[node name="CameraTopLeft" type="Marker2D" parent="."]
+position = Vector2(-68, -404)
+
+[node name="CameraBottomRight" type="Marker2D" parent="."]
+position = Vector2(1802, 625)
+
+[editable path="Level1Portal"]
+[editable path="Level3Portal"]
