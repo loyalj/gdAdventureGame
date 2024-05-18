@@ -16,7 +16,7 @@ func _ready():
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("lmb_click"):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		moveTarget = cam.get_global_mouse_position()
 		nav.target_position = moveTarget
 		dialogBox.hide()

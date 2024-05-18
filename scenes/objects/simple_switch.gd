@@ -103,4 +103,4 @@ func _unhandled_input(event):
 
 # TODO Separate click area from player activation overlap area, so that we can improve the feel of this interaction
 
-# TODO Add state to turn of input when the switch is animating
+# TODO Add state to turn off input when the switch is animating
