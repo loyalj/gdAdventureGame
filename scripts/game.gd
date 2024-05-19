@@ -36,6 +36,7 @@ func _on_scene_change(newLevel):
 	connect_level_signals()
 	reset_mouse_cursor() 
 	
+	# Set the player's location to match a spawn marker for the level they came from last
 	for spawnPoint in get_tree().get_nodes_in_group("PlayerSpawn"):
 		if spawnPoint.name == lastLevelName:
 			currentLevel.player.set_player_position(

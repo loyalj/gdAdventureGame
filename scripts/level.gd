@@ -28,18 +28,17 @@ func check_camera_limits():
 	if bottomRight:
 		player.cam.limit_bottom = bottomRight.position.y
 		player.cam.limit_right = bottomRight.position.x
-	
 
 
+# Check the level for any level portals and handle their signals
 func activate_portals():
-	# Check the level for any level portals and handle their signals
 	for portal in find_children("*","LevelPortal"):
 		portal.connect("portal_entered", _on_portal_entered)
 
 
-func activate_switches():
-	# Check the level for any simple switches and handle their signals
+# Check the level for any simple switches and handle their signals
 	# Then load or setup storage for them in the quest manager's world state
+func activate_switches():
 	for simpleSwitch:SimpleSwitch in find_children("*","SimpleSwitch"):
 		simpleSwitch.connect("looked_at", _on_something_looked_at)
 		simpleSwitch.connect("switch_flipped", _on_switch_flipped)
@@ -58,9 +57,10 @@ func _on_portal_entered(targetLevelPath):
 	change_level.emit(targetLevelPath, levelName)
 
 
+# Tell the player to display dialog ff the level receives a something looked at signal
 func _on_something_looked_at(dialog):
 	player.show_dialog(dialog)
 
-
+# Listen for switches getting flipped and save the new value to the quest manager
 func _on_switch_flipped(switchName, switchOn):
 	QuestManager.set_value(levelName, switchName, switchOn)
