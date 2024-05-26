@@ -14,6 +14,7 @@ func _ready():
 	
 	activate_portals()
 	activate_switches()
+	activate_look_ats()
 	check_camera_limits()
 	
 
@@ -40,13 +41,18 @@ func activate_portals():
 	# Then load or setup storage for them in the quest manager's world state
 func activate_switches():
 	for simpleSwitch:SimpleSwitch in find_children("*","SimpleSwitch"):
-		simpleSwitch.connect("looked_at", _on_something_looked_at)
 		simpleSwitch.connect("switch_flipped", _on_switch_flipped)
 		
 		if !QuestManager.has_value(levelName, simpleSwitch.switchName):
 			QuestManager.set_value(levelName, simpleSwitch.switchName, simpleSwitch.switchOn)
 		else:
 			simpleSwitch.set_switch(QuestManager.get_value(levelName, simpleSwitch.switchName))
+
+
+# Check the level for any LookAt Components and connect to their signal
+func activate_look_ats():
+	for lookAt:LookAt in find_children("*","LookAt"):
+		lookAt.connect("looked_at", _on_something_looked_at)
 
 
 # Handle a signal from any level portal by signaling for the game to perform a level change. 

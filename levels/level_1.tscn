@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://lmriysrn1vcr"]
+[gd_scene load_steps=9 format=3 uid="uid://lmriysrn1vcr"]
 
 [ext_resource type="PackedScene" uid="uid://ddxf1sqq7l3xe" path="res://scenes/player.tscn" id="1_asugf"]
 [ext_resource type="Script" path="res://levels/level_1.gd" id="1_twrqo"]
 [ext_resource type="PackedScene" uid="uid://cnpcu7wpot5oi" path="res://scenes/objects/level_portal.tscn" id="3_2gae2"]
 [ext_resource type="PackedScene" uid="uid://267yp48csqck" path="res://scenes/objects/simple_switch.tscn" id="4_ov0iq"]
+[ext_resource type="PackedScene" uid="uid://cgulqngkn7qs8" path="res://scenes/objects/components/look_at.tscn" id="5_m1c7c"]
+[ext_resource type="Texture2D" uid="uid://qw8lcg8u0u4l" path="res://assets/mouse_look_at.png" id="6_slnxe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_886v4"]
+size = Vector2(142, 125)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8uvju"]
 vertices = PackedVector2Array(1441, 894, 974, 898, 716, 883, 694, 846, 3163, 883, 3232, 1022, 1841, 1015, 1464, 959, 1688, 914, 1836, 1028, 1884, 1065, 22, 1065, 945, 959, 1550, 806, 29, 772, 710, 893, 573, 891, 567, 880, 597, 843)
@@ -19,6 +24,20 @@ player = NodePath("Player")
 
 [node name="Player" parent="." instance=ExtResource("1_asugf")]
 position = Vector2(367, 872)
+
+[node name="Painting" type="ColorRect" parent="."]
+offset_left = 770.0
+offset_top = 574.0
+offset_right = 912.0
+offset_bottom = 699.0
+
+[node name="LookAt" parent="Painting" instance=ExtResource("5_m1c7c")]
+lookAtDialog = "This painting really makes me think about winter!"
+mouseLookAt = ExtResource("6_slnxe")
+
+[node name="Look At Collision" type="CollisionShape2D" parent="Painting/LookAt"]
+position = Vector2(71, 62.5)
+shape = SubResource("RectangleShape2D_886v4")
 
 [node name="Grass Art" type="Polygon2D" parent="."]
 position = Vector2(1, 3)
@@ -50,7 +69,16 @@ position = Vector2(2751, 919)
 [node name="SimpleSwitch" parent="." instance=ExtResource("4_ov0iq")]
 position = Vector2(630, 884)
 switchName = "s001"
-lookAtDialog = "\"Looks like a switch of some sort, I wonder what it does?\""
+
+[node name="LookAt" parent="SimpleSwitch" instance=ExtResource("5_m1c7c")]
+lookAtDialog = "Hmmm, I wonder what this switch does?"
+mouseLookAt = ExtResource("6_slnxe")
+
+[node name="Deactivate Collision" type="CollisionPolygon2D" parent="SimpleSwitch/LookAt/DeactivateDistance" index="0"]
+polygon = PackedVector2Array(-49, -67, 51, -64, 121, 30, -115, 29)
+
+[node name="Look At Collision" type="CollisionPolygon2D" parent="SimpleSwitch/LookAt"]
+polygon = PackedVector2Array(-27, -37, 26, -37, 57, 0, -57, -1)
 
 [node name="CameraTopLeft" type="Marker2D" parent="."]
 position = Vector2(10, 379)
@@ -59,3 +87,4 @@ position = Vector2(10, 379)
 position = Vector2(3231, 1149)
 
 [editable path="Level2Portal"]
+[editable path="SimpleSwitch/LookAt"]

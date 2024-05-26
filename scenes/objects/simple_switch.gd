@@ -1,13 +1,10 @@
 class_name SimpleSwitch
 extends Node2D
 
-signal looked_at(dialog)
 signal switch_flipped(switchName, switchOn)
 
 @export var switchName:String
-@export var lookAtDialog:String
 @export var mouseActivate:CompressedTexture2D 
-@export var mouseLookAt:CompressedTexture2D
 
 @onready var animate:AnimationPlayer = $AnimationPlayer
 
@@ -80,8 +77,6 @@ func _on_activation_area_mouse_entered():
 	mouseOver = true
 	if currentState == switchStates.PLAYER_ENTERED:
 		Input.set_custom_mouse_cursor(mouseActivate, Input.CURSOR_ARROW, cursorHotspot)
-	else:
-		Input.set_custom_mouse_cursor(mouseLookAt, Input.CURSOR_ARROW, cursorHotspot)
 
 
 func _on_activation_area_mouse_exited():
@@ -97,9 +92,6 @@ func _unhandled_input(event):
 		match currentState:
 			switchStates.PLAYER_ENTERED:
 				flip_switch()
-			
-			switchStates.IDLE:
-				looked_at.emit(lookAtDialog)
 
 # TODO Separate click area from player activation overlap area, so that we can improve the feel of this interaction
 

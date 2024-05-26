@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgulqngkn7qs8"]
+
+[ext_resource type="Script" path="res://scenes/objects/components/look_at.gd" id="1_oov0e"]
+
+[node name="LookAt" type="Area2D"]
+script = ExtResource("1_oov0e")
+
+[node name="DeactivateDistance" type="Area2D" parent="."]
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="body_entered" from="DeactivateDistance" to="." method="_on_deactivate_distance_body_entered"]
+[connection signal="body_exited" from="DeactivateDistance" to="." method="_on_deactivate_distance_body_exited"]
