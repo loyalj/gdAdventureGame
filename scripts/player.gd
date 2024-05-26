@@ -11,6 +11,7 @@ var dialogDisplayTime:float = 3.0
 @export var dialogBox: Label
 
 
+
 func _ready():
 	moveTarget = global_position
 
@@ -19,6 +20,7 @@ func _unhandled_input(event):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		moveTarget = cam.get_global_mouse_position()
 		nav.target_position = moveTarget
+		
 		dialogBox.hide()
 
 
@@ -38,9 +40,10 @@ func set_player_position(new_position):
 
 
 func show_dialog(dialog):
-	dialogBox.text = dialog
-	dialogBox.show()
-	
-	await get_tree().create_timer(dialogDisplayTime).timeout
-	
-	dialogBox.hide()
+	if !dialogBox.visible:
+		dialogBox.text = dialog
+		dialogBox.show()
+		
+		await get_tree().create_timer(dialogDisplayTime).timeout
+		
+		dialogBox.hide()

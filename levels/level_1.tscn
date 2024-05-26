@@ -30,9 +30,10 @@ offset_left = 770.0
 offset_top = 574.0
 offset_right = 912.0
 offset_bottom = 699.0
+color = Color(0.596078, 0.929412, 0.929412, 1)
 
 [node name="LookAt" parent="Painting" instance=ExtResource("5_m1c7c")]
-lookAtDialog = "This painting really makes me think about winter!"
+lookAtDialog = "This painting really makes me think about the sky!"
 mouseLookAt = ExtResource("6_slnxe")
 
 [node name="Look At Collision" type="CollisionShape2D" parent="Painting/LookAt"]
