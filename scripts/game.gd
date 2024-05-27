@@ -42,9 +42,7 @@ func _on_scene_change(newLevel):
 			currentLevel.player.set_player_position(
 				spawnPoint.global_position)
 
+
 # The cursor gets stuck as a custom curosr sometimes when objects from an old level get unloaded without resetting it
 func reset_mouse_cursor():
-	var defaultMouseCursorPath = ProjectSettings.get_setting("display/mouse_cursor/custom_image")
-	var defaultMouseCursor = load(defaultMouseCursorPath)
-	Input.set_custom_mouse_cursor(defaultMouseCursor, Input.CURSOR_ARROW, ProjectSettings.get_setting("display/mouse_cursor/custom_image_hotspot"))
-	
+	MouseManager.set_mouse_cursor(MouseManager.Cursors.DEFAULT)

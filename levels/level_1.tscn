@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://lmriysrn1vcr"]
+[gd_scene load_steps=8 format=3 uid="uid://lmriysrn1vcr"]
 
 [ext_resource type="PackedScene" uid="uid://ddxf1sqq7l3xe" path="res://scenes/player.tscn" id="1_asugf"]
 [ext_resource type="Script" path="res://levels/level_1.gd" id="1_twrqo"]
 [ext_resource type="PackedScene" uid="uid://cnpcu7wpot5oi" path="res://scenes/objects/level_portal.tscn" id="3_2gae2"]
 [ext_resource type="PackedScene" uid="uid://267yp48csqck" path="res://scenes/objects/simple_switch.tscn" id="4_ov0iq"]
 [ext_resource type="PackedScene" uid="uid://cgulqngkn7qs8" path="res://scenes/objects/components/look_at.tscn" id="5_m1c7c"]
-[ext_resource type="Texture2D" uid="uid://qw8lcg8u0u4l" path="res://assets/mouse_look_at.png" id="6_slnxe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_886v4"]
 size = Vector2(142, 125)
@@ -34,7 +33,6 @@ color = Color(0.596078, 0.929412, 0.929412, 1)
 
 [node name="LookAt" parent="Painting" instance=ExtResource("5_m1c7c")]
 lookAtDialog = "This painting really makes me think about the sky!"
-mouseLookAt = ExtResource("6_slnxe")
 
 [node name="Look At Collision" type="CollisionShape2D" parent="Painting/LookAt"]
 position = Vector2(71, 62.5)
@@ -73,7 +71,6 @@ switchName = "s001"
 
 [node name="LookAt" parent="SimpleSwitch" instance=ExtResource("5_m1c7c")]
 lookAtDialog = "Hmmm, I wonder what this switch does?"
-mouseLookAt = ExtResource("6_slnxe")
 
 [node name="Deactivate Collision" type="CollisionPolygon2D" parent="SimpleSwitch/LookAt/DeactivateDistance" index="0"]
 polygon = PackedVector2Array(-49, -67, 51, -64, 121, 30, -115, 29)

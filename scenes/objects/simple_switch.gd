@@ -4,14 +4,11 @@ extends Node2D
 signal switch_flipped(switchName, switchOn)
 
 @export var switchName:String
-@export var mouseActivate:CompressedTexture2D 
 
 @onready var animate:AnimationPlayer = $AnimationPlayer
 
 var switchOn:bool = true
 var mouseOver:bool = false
-var defaultMouseCursor:CompressedTexture2D
-var cursorHotspot:Vector2
 var currentState:switchStates
 
 enum switchStates {
@@ -21,8 +18,6 @@ enum switchStates {
 }
 
 func _ready():
-	cursorHotspot = ProjectSettings.get_setting("display/mouse_cursor/custom_image_hotspot")
-	defaultMouseCursor = load(ProjectSettings.get_setting("display/mouse_cursor/custom_image"))
 	changeState(switchStates.IDLE)
 
 
@@ -31,11 +26,11 @@ func changeState(newState):
 	
 	match newState:
 		switchStates.IDLE:
-			Input.set_custom_mouse_cursor(defaultMouseCursor, Input.CURSOR_ARROW, cursorHotspot)
+			MouseManager.set_mouse_cursor(MouseManager.Cursors.DEFAULT)
 		
 		switchStates.PLAYER_ENTERED:
 			if mouseOver:
-				Input.set_custom_mouse_cursor(mouseActivate, Input.CURSOR_ARROW, cursorHotspot)
+				MouseManager.set_mouse_cursor(MouseManager.Cursors.ACTIVATE)
 		
 		switchStates.PLAYER_EXITED:
 			changeState(switchStates.IDLE)
@@ -76,12 +71,12 @@ func _on_activation_area_body_exited(_body):
 func _on_activation_area_mouse_entered():
 	mouseOver = true
 	if currentState == switchStates.PLAYER_ENTERED:
-		Input.set_custom_mouse_cursor(mouseActivate, Input.CURSOR_ARROW, cursorHotspot)
+		MouseManager.set_mouse_cursor(MouseManager.Cursors.ACTIVATE)
 
 
 func _on_activation_area_mouse_exited():
 	mouseOver = false
-	Input.set_custom_mouse_cursor(defaultMouseCursor, Input.CURSOR_ARROW, cursorHotspot)
+	MouseManager.set_mouse_cursor(MouseManager.Cursors.DEFAULT)
 
 
 func _unhandled_input(event):

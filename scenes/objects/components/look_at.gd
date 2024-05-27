@@ -9,17 +9,9 @@ extends Node2D
 signal looked_at(dialog)
 
 @export var lookAtDialog:String
-@export var mouseLookAt:CompressedTexture2D
 
 var isActive:bool = true
 var mouseOver:bool = false
-var defaultMouseCursor:CompressedTexture2D
-var cursorHotspot:Vector2
-
-
-func _ready():
-	cursorHotspot = ProjectSettings.get_setting("display/mouse_cursor/custom_image_hotspot")
-	defaultMouseCursor = load(ProjectSettings.get_setting("display/mouse_cursor/custom_image"))
 
 
 # When the mouse enters we want to switch to the custom cursor
@@ -27,7 +19,7 @@ func _ready():
 func _on_mouse_entered():
 	if isActive:
 		mouseOver = true
-		Input.set_custom_mouse_cursor(mouseLookAt, Input.CURSOR_ARROW, cursorHotspot)
+		MouseManager.set_mouse_cursor(MouseManager.Cursors.LOOK_AT)
 
 
 # When the mouse exits we want to switch to the default cursor from the project settings
@@ -35,7 +27,7 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	if isActive:
 		mouseOver = false
-		Input.set_custom_mouse_cursor(defaultMouseCursor, Input.CURSOR_ARROW, cursorHotspot)
+		MouseManager.set_mouse_cursor(MouseManager.Cursors.DEFAULT)
 
 
 # Check for mouse clicks which haven't been handled by a GUI layer, or a different game object
